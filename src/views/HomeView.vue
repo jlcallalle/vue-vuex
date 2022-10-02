@@ -3,6 +3,7 @@ import { RouterView, RouterLink } from 'vue-router'
 import InputSearch from '@/components/InputSearch.vue'
 import ProfileCard from '@/components/ProfileCard.vue'
 import ChatItem from '@/components/ChatItem.vue'
+import store from '@/store/store.js'
 
 export default {
   components: {
@@ -15,8 +16,9 @@ export default {
   data() {
     return {
       search: '',
+      store,
       profile: {
-        username: 'Diana Nerd',
+        username: store.username,
         status: 'active',
         avatar: '/avatars/avatar.jpg'
       },
