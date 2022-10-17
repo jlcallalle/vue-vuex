@@ -4,6 +4,8 @@ import InputSearch from '@/components/InputSearch.vue'
 import ProfileCard from '@/components/ProfileCard.vue'
 import ChatItem from '@/components/ChatItem.vue'
 import store from '@/store/store.js'
+import { mapState } from 'vuex'
+
 
 export default {
   components: {
@@ -32,6 +34,12 @@ export default {
       ]
     }
   },
+  computed: {
+    ...mapState(['username']),
+    /* username() {
+      return this.$store.state.username;
+    } */
+  },
 
 }
 </script>
@@ -45,6 +53,7 @@ export default {
       :username="profile.username"
       :status="profile.status"
     />
+    
     <RouterLink to="/" class="channels-title">Canales <Icon icon="carbon:hashtag" /></RouterLink>
     <div class="channels">
       <ChatItem
@@ -55,6 +64,9 @@ export default {
         :messages="channel.messages"
       />
     </div>
+    <p>sin vuex {{ profile.username }} </p>
+    <p>con vuex {{ $store.state.username }}</p>
+    <p>con vuex mapState {{ username}}</p>
   </aside>
   <main>
     <RouterView />
