@@ -4,7 +4,7 @@ import InputSearch from '@/components/InputSearch.vue'
 import ProfileCard from '@/components/ProfileCard.vue'
 import ChatItem from '@/components/ChatItem.vue'
 import store from '@/store/store.js'
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 
 export default {
@@ -36,6 +36,7 @@ export default {
   },
   computed: {
     ...mapState(['username']),
+    ...mapGetters(['firstName'])
     /* username() {
       return this.$store.state.username;
     } */
@@ -50,7 +51,7 @@ export default {
     <InputSearch v-model="search" />
     <ProfileCard
       :avatar="profile.avatar"
-      :username="profile.username"
+      :username="firstName()"
       :status="profile.status"
     />
     
@@ -64,9 +65,12 @@ export default {
         :messages="channel.messages"
       />
     </div>
-    <p>sin vuex {{ profile.username }} </p>
-    <p>con vuex {{ $store.state.username }}</p>
-    <p>con vuex mapState {{ username}}</p>
+    <div class="hide">
+      <p>sin vuex {{ profile.username }} </p>
+      <p>con vuex state {{ $store.state.username }}</p>
+      <p>con vuex mapState {{ username }}</p>
+      <p>con vuex mapGetters {{ firstName() }}</p>
+    </div>
   </aside>
   <main>
     <RouterView />
@@ -89,5 +93,8 @@ export default {
   main {
     @apply w-full;
   }
+}
+.hide {
+  display: none;
 }
 </style>
