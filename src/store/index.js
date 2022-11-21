@@ -12,7 +12,12 @@ const store = createStore({
       return state.username.split(' ')[1]
     },  */
     firstName: (state) => (c) => {
-      return state.username.split('').reverse().join(c)
+      return state.username.split('').join(c)
+    }
+  },
+  mutations: {
+    updateUsername(state, username) {
+      state.username = username
     }
   }
 })

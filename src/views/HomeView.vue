@@ -3,7 +3,6 @@ import { RouterView, RouterLink } from 'vue-router'
 import InputSearch from '@/components/InputSearch.vue'
 import ProfileCard from '@/components/ProfileCard.vue'
 import ChatItem from '@/components/ChatItem.vue'
-import store from '@/store/store.js'
 import { mapState, mapGetters } from 'vuex'
 
 
@@ -18,9 +17,8 @@ export default {
   data() {
     return {
       search: '',
-      store,
       profile: {
-        username: store.username,
+        username: 'Jorge',
         status: 'active',
         avatar: '/avatars/avatar.jpg'
       },
@@ -65,12 +63,12 @@ export default {
         :messages="channel.messages"
       />
     </div>
-    <div class="hide">
-      <p>sin vuex {{ profile.username }} </p>
-      <p>con vuex state {{ $store.state.username }}</p>
-      <p>con vuex mapState {{ username }}</p>
-      <p>con vuex mapGetters {{ firstName() }}</p>
-    </div>
+    <ul class="code">
+      <li>data static {{ profile.username }} </li>
+      <li>vuex state {{ $store.state.username }}</li>
+      <li>vuex mapState {{ username }}</li>
+      <li>vuex mapGetters {{ firstName() }}</li>
+    </ul>
   </aside>
   <main>
     <RouterView />
@@ -96,5 +94,8 @@ export default {
 }
 .hide {
   display: none;
+}
+.code {
+  font-size: 14px;
 }
 </style>
