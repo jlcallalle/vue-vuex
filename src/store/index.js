@@ -19,6 +19,12 @@ const store = createStore({
     updateUsername(state, username) {
       state.username = username
     }
+  },
+  actions: {
+    updateUsername({ commit, state }, username) {
+      console.log('update username action!', state.username, username)
+      commit('updateUsername', username)
+    },
   }
 })
 
