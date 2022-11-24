@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import { getUser } from '@/api'
 
 //Primera Variable Creada con VUEX
 const store = createStore({
@@ -21,9 +22,11 @@ const store = createStore({
     }
   },
   actions: {
-    updateUsername({ commit, state }, username) {
+    async updateUsername({ commit, state }, username) {
       console.log('update username action!', state.username, username)
-      commit('updateUsername', username)
+      const user = await getUser(1)
+      console.log(user)
+      commit('updateUsername', user.username)
     },
   }
 })
