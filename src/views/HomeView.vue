@@ -19,7 +19,6 @@ export default {
       search: '',
       profile: {
         username: 'Jorge',
-        status: 'active',
         avatar: '/avatars/avatar.jpg'
       },
       channels: [
@@ -33,6 +32,7 @@ export default {
     }
   },
   computed: {
+    ...mapState(['status']),
     ...mapState(['username']),
     ...mapGetters(['firstName'])
     /* username() {
@@ -50,7 +50,7 @@ export default {
     <ProfileCard
       :avatar="profile.avatar"
       :username="firstName()"
-      :status="profile.status"
+      :status="status"
     />
     
     <RouterLink to="/" class="channels-title">Canales <Icon icon="carbon:hashtag" /></RouterLink>
@@ -68,6 +68,7 @@ export default {
       <li>vuex state {{ $store.state.username }}</li>
       <li>vuex mapState {{ username }}</li>
       <li>vuex mapGetters {{ firstName() }}</li>
+      <li>vuex status  {{ status }}</li>
     </ul>
   </aside>
   <main>

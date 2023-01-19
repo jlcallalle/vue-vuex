@@ -5,7 +5,8 @@ import { getUser } from '@/api'
 const store = createStore({
   state() {
     return {
-        username: 'Jorge Callalle'
+        username: '',
+        status: null,
     }
   },
   getters: {
@@ -19,13 +20,20 @@ const store = createStore({
   mutations: {
     updateUsername(state, username) {
       state.username = username
+    },
+    setStatus(state, value) {
+      state.status = value
     }
   },
   actions: {
-    async updateUsername({ commit, state }, username) {
+    async updateUsername({ commit, state, rootState }, username) {
       console.log('update username action!', state.username, username)
       const user = await getUser(1)
       console.log(user)
+      console.log(rootState.status)
+      if(!rootState.status) {
+        commit('setStatus', 'active')
+      }
       commit('updateUsername', user.username)
     },
   }
