@@ -30,11 +30,11 @@ const store = createStore({
       console.log('update username action!', state.username, username)
       const user = await getUser(1)
       console.log(user)
-      console.log(rootState.status)
-      if(!rootState.status) {
-        commit('setStatus', 'active')
-      }
       commit('updateUsername', user.username)
+      if(state.username) {
+        commit('setStatus', 'active')
+        console.log(rootState.status)
+      }
     },
   }
 })
