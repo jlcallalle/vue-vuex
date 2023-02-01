@@ -34,7 +34,8 @@ export default {
   computed: {
     ...mapState(['status']),
     ...mapState(['username']),
-    ...mapGetters(['firstName'])
+    ...mapGetters(['firstName']),
+    ...mapGetters('channels', ['getChannels'])
     /* username() {
       return this.$store.state.username;
     } */
@@ -56,11 +57,11 @@ export default {
     <RouterLink to="/" class="channels-title">Canales <Icon icon="carbon:hashtag" /></RouterLink>
     <div class="channels">
       <ChatItem
-        v-for="channel in channels"
+        v-for="channel in getChannels(search)"
         :key="channel.id"
         :id="channel.id"
         :name="channel.name"
-        :messages="channel.messages"
+        :messages="channel.messages.length"
       />
     </div>
     <ul class="code">
@@ -70,6 +71,7 @@ export default {
       <li>vuex mapGetters {{ firstName() }}</li>
       <li>vuex status  {{ status }}</li>
     </ul>
+    <p>search: {{ search }}</p>
   </aside>
   <main>
     <RouterView />

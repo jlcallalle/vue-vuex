@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import { getUser } from '@/api'
+import channels from '@/store/modules/channels'
 
 //Primera Variable Creada con VUEX
 const store = createStore({
@@ -36,6 +37,9 @@ const store = createStore({
         console.log(rootState.status)
       }
     },
+  },
+  modules: {
+    channels
   }
 })
 
